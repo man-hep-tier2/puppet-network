@@ -69,10 +69,10 @@ class network::global (
   $ipv6defaultdev = undef,
   $nisdomain      = undef,
   $vlan           = undef,
-  $ipv6networking = false,
+  Boolean $ipv6networking = false,
   $nozeroconf     = undef,
-  $restart        = true,
-  $requestreopen  = true,
+  Boolean $restart = true,
+  Boolean $requestreopen = true,
 ) {
   # Validate our data
   if $gateway {
@@ -81,10 +81,6 @@ class network::global (
   if $ipv6gateway {
     if ! is_ip_address($ipv6gateway) { fail("${ipv6gateway} is not an IPv6 address.") }
   }
-
-  validate_bool($ipv6networking)
-  validate_bool($restart)
-  validate_bool($requestreopen)
 
   # Validate our regular expressions
   if $vlan {
