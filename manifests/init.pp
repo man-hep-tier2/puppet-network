@@ -31,7 +31,15 @@ class network {
     }
   }
 
+  if $facts['os']['release']['major'] + 0 > 7 {
+    $service_name = 'NetworkManager'
+    $neednm = 'yes'
+  } else {
+    $service_name = 'network'
+    $neednm = 'no'
+  }
   service { 'network':
+    name       => $service_name,
     ensure     => 'running',
     enable     => true,
     hasrestart => true,
@@ -161,6 +169,7 @@ define network_if_base (
 
   include '::network'
 
+  $neednm = $network::neednm
   $interface = $name
 
   # Deal with the case where $dns2 is non-empty and $dns1 is empty.
