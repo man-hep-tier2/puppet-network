@@ -46,7 +46,7 @@ define network::alias (
   Optional[Stdlib::IP::Address::V6] $ipv6gateway = undef,
   Boolean $userctl = false,
   Optional[String] $zone = undef,
-  Optional[$metric] = undef,
+  Optional[String] $metric = undef,
   Boolean $restart = true,
 ) {
 
