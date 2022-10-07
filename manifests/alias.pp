@@ -37,23 +37,18 @@
 # Copyright (C) 2011 Mike Arnold, unless otherwise noted.
 #
 define network::alias (
-  $ensure,
-  $ipaddress,
-  $netmask,
-  $gateway = undef,
-  $noaliasrouting = false,
-  $ipv6address = undef,
-  $ipv6gateway = undef,
-  $userctl = false,
-  $zone = undef,
-  $metric = undef,
-  $restart = true,
+  String $ensure,
+  Stdlib::IP::Address $ipaddress,
+  String $netmask,
+  Optional[String] $gateway = undef,
+  Boolean $noaliasrouting = false,
+  Optional[Stdlib::IP::Address::V6] $ipv6address = undef,
+  Optional[Stdlib::IP::Address::V6] $ipv6gateway = undef,
+  Boolean $userctl = false,
+  Optional[String] $zone = undef,
+  Optional[$metric] = undef,
+  Boolean $restart = true,
 ) {
-  # Validate our data
-  if ! is_ip_address($ipaddress) { fail("${ipaddress} is not an IP address.") }
-  # Validate our booleans
-  validate_bool($noaliasrouting)
-  validate_bool($userctl)
 
   network_if_base { $title:
     ensure         => $ensure,
