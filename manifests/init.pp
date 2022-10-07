@@ -130,7 +130,7 @@ define network_if_base (
   Optional[String] $mtu = undef,
   Optional[Stdlib::Fqdn] $dhcp_hostname = undef,
   Optional[String] $ethtool_opts = undef,
-  Optional[String} $bonding_opts = undef,
+  Optional[String] $bonding_opts = undef,
   Boolean $isalias = false,
   Boolean $peerdns = false,
   Boolean $ipv6peerdns = false,
