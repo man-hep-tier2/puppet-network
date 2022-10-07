@@ -115,7 +115,7 @@ class network {
 define network_if_base (
   Enum['up','down'] $ensure,
   String $macaddress,
-  Optional[Stdlib::IP::Address $ipaddress] = undef,
+  Optional[Stdlib::IP::Address] $ipaddress = undef,
   Optional[String] $netmask = undef,
   Boolean $manage_hwaddr = true,
   Optional[Stdlib::IP::Address] $gateway = undef,
