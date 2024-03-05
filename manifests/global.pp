@@ -77,15 +77,15 @@ class network::global (
 
   include '::network'
 
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     /^(RedHat|CentOS|OEL|OracleLinux|SLC|Scientific|Rocky)$/: {
-      case $::operatingsystemrelease {
+      case $facts['os']['release']['major'] {
         /^[456]/: { $has_systemd = false }
         default: { $has_systemd = true }
       }
     }
     'Fedora': {
-      case $::operatingsystemrelease {
+      case $facts['os']['release']['major'] {
         /^(1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17)$/: { $has_systemd = false }
         default: { $has_systemd = true }
       }
